@@ -18,8 +18,6 @@ class WarnAsError(Plugin):
         Configure plugin.
         """
         super(WarnAsError, self).configure(options, conf)
-        if options.enabled:
-            self.enabled=True
 
 
     def prepareTestRunner(self, runner):
