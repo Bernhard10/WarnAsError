@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='warnaserror',
-    author='Bernhard Thiel'
+    author='Bernhard Thiel',
     license="MIT",
     py_modules = ['warnaserror'],
     entry_points = {
