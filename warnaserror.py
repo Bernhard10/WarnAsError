@@ -5,16 +5,13 @@ import nose
 import warnings
 
 class WarnAsError(Plugin):
+    """Treat warnings that occur DURIONG tests as errors."""
     enabled = False
     def options(self, parser, env):
         """
         Add options to command line.
         """
         super(WarnAsError, self).options(parser, env)
-        parser.add_option("--warn-as-error", action="store_true",
-                          default=False,
-                          dest="enabled",
-                          help="Treat warnings that occur WITHIN tests as errors.")
 
     def configure(self, options, conf):
         """
