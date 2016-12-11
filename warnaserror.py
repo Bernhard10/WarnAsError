@@ -1,7 +1,6 @@
 __author__ = 'Bernhard Thiel'
 
 from nose.plugins import Plugin
-import nose
 import warnings
 
 class WarnAsError(Plugin):
