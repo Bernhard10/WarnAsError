@@ -11,4 +11,4 @@ Installation
 Usage
 =====
 
-`nosetests --with-warn-as-error TESTFILE`
+`nosetests --with-warnaserror TESTFILE`
