@@ -15,21 +15,21 @@ python:
 install:
  - python setup.py install
  - pip install coverage
+ - pip install pep8
+ - pip install pyflakes
  - if [ "$TRAVIS_PYTHON_VERSION" == "2.6" ]; then pip install unittest2; fi
 
 script:
  - coverage run --include=warnaserror.py -m nose -vx tests/test_*.py
+ - pyflakes .
+ - pep8 --statistics --count .
 
 after_success:
     # Report coverage and send to coveralls.io
   - pip install coveralls
   - coverage report
   - coveralls
-
-after_script:
- - pip install pep8 pyflakes
- - pyflakes . | tee >(wc -l)
- - pep8 --statistics --count .
+  - pyflakes .
 
 matrix:
   fast_finish: true
