@@ -14,10 +14,17 @@ python:
 
 install:
  - python setup.py install
+ - pip install coverage
  - if [ "$TRAVIS_PYTHON_VERSION" == "2.6" ]; then pip install unittest2; fi
 
 script:
- - nosetests --with-warnaserror tests/test_*.py
+ - coverage run --include=warnaserror.py -m nose -vx tests/test_*.py
+
+after_success:
+    # Report coverage and send to coveralls.io
+  - pip install coveralls
+  - coverage report
+  - coveralls
 
 after_script:
  - pip install pep8 pyflakes
