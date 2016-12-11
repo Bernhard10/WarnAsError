@@ -1,0 +1,28 @@
+language: python
+
+# Use container-based infrastructure
+sudo: false
+
+python:
+ - pypy
+ - pypy3
+ - 2.7
+ - 3.5
+ - 2.6
+ - 3.3
+ - 3.4
+
+install:
+ - python setup.py install
+ - if [ "$TRAVIS_PYTHON_VERSION" == "2.6" ]; then pip install unittest2; fi
+
+script:
+ - nosetests --with-warnaserror tests/test_*.py
+
+after_script:
+ - pip install pep8 pyflakes
+ - pyflakes . | tee >(wc -l)
+ - pep8 --statistics --count .
+
+matrix:
+  fast_finish: true
