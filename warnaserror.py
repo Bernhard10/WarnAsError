@@ -1,12 +1,13 @@
+from nose.plugins import Plugin
+import warnings
+
 __author__ = 'Bernhard Thiel'
 
-from nose.plugins import Plugin
-import nose
-import warnings
 
 class WarnAsError(Plugin):
     """Treat warnings that occur DURIONG tests as errors."""
     enabled = False
+
     def options(self, parser, env):
         """
         Add options to command line.
@@ -19,7 +20,6 @@ class WarnAsError(Plugin):
         """
         super(WarnAsError, self).configure(options, conf)
 
-
     def prepareTestRunner(self, runner):
         """
         Treat warnings as errors.
@@ -27,13 +27,12 @@ class WarnAsError(Plugin):
         return WaETestRunner(runner)
 
 
-
 class WaETestRunner(object):
+
     def __init__(self, runner):
-        self.runner=runner
+        self.runner = runner
+
     def run(self, test):
         with warnings.catch_warnings():
             warnings.simplefilter("error")
             return self.runner.run(test)
-
-

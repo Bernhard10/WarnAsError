@@ -1,0 +1,35 @@
+language: python
+
+# Use container-based infrastructure
+sudo: false
+
+python:
+ - pypy
+ - pypy3
+ - 2.7
+ - 3.5
+ - 2.6
+ - 3.3
+ - 3.4
+
+install:
+ - python setup.py install
+ - pip install coverage
+ - pip install pep8
+ - pip install pyflakes
+ - if [ "$TRAVIS_PYTHON_VERSION" == "2.6" ]; then pip install unittest2; fi
+
+script:
+ - coverage run --include=warnaserror.py -m nose -vx tests/test_*.py
+ - pyflakes .
+ - pep8 --statistics --count .
+
+after_success:
+    # Report coverage and send to coveralls.io
+  - pip install coveralls
+  - coverage report
+  - coveralls
+  - pyflakes .
+
+matrix:
+  fast_finish: true
