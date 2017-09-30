@@ -7,9 +7,8 @@ python:
  - pypy
  - pypy3
  - 2.7
+ - 3.6
  - 3.5
- - 2.6
- - 3.3
  - 3.4
 
 install:
@@ -17,7 +16,6 @@ install:
  - pip install coverage
  - pip install pep8
  - pip install pyflakes
- - if [ "$TRAVIS_PYTHON_VERSION" == "2.6" ]; then pip install unittest2; fi
 
 script:
  - coverage run --include=warnaserror.py -m nose -vx tests/test_*.py
