@@ -5,7 +5,7 @@ __author__ = 'Bernhard Thiel'
 
 
 class WarnAsError(Plugin):
-    """Treat warnings that occur DURIONG tests as errors."""
+    """Treat warnings that occur DURING tests as errors."""
     enabled = False
 
     def options(self, parser, env):
