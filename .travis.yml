@@ -20,7 +20,7 @@ install:
 script:
  - coverage run --include=warnaserror.py -m nose -vx tests/test_*.py
  - pyflakes .
- - pep8 --statistics --count .
+ - pep8 --statistics --count --max-line-length=120 .
 
 after_success:
     # Report coverage and send to coveralls.io
